@@ -8,6 +8,6 @@ namespace OrderCopier.Interfaces
 {
     public interface IOrderAdder
     {
-        void AddOrder(IOrder order, string statusId, string dateAdd);
+        string AddOrder(IOrder order);
     }
 }

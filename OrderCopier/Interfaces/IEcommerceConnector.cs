@@ -8,6 +8,6 @@ namespace OrderCopier.Interfaces
 {
     public interface IEcommerceConnector
     {
-        Object GetResponse(string token, string method, string parameters);
+        Object GetResponse(IEnumerable<KeyValuePair<string, string>> myData);
     }
 }

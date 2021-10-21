@@ -2,7 +2,9 @@
 using OrderCopier.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Web;
 
 namespace OrderCopier.Ecommerce.BaseLinker
 {
@@ -13,17 +15,18 @@ namespace OrderCopier.Ecommerce.BaseLinker
         {
             _logger = logger;
         }
-        public object GetResponse(string token, string method, string parameters)
+        public object GetResponse(IEnumerable<KeyValuePair<string,string>> myData)
         {
             string URLAddress = "https://api.baselinker.com/connector.php";
-            string param = $"token={token}&method={method}&parameters={parameters}";
             JObject response = new JObject();
             try
             {
                 using (WebClient client = new WebClient())
                 {
+                    var content = string.Join("&", myData.Select(x => $"{x.Key}={HttpUtility.UrlEncode(x.Value)}").ToArray());
+
                     client.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded; charset=UTF-8";
-                    string res = client.UploadString(URLAddress, param);
+                    string res = client.UploadString(URLAddress, content);
                     response = JObject.Parse(res);
                 }
             }

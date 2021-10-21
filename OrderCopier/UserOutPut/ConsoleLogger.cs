@@ -1,4 +1,5 @@
-﻿using OrderCopier.Interfaces;
+﻿using Newtonsoft.Json.Linq;
+using OrderCopier.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,19 @@ namespace OrderCopier.UserOutPut
         public void Info(string msg)
         {
             Log(msg);
+        }
+        public void VerifyResponse(string msg)
+        {
+            JObject jObject = JObject.Parse(msg);
+            bool result = jObject["status"].ToString().Equals("SUCCESS") ? true : false;
+            if (result)
+            {
+                Info($"Pomyślnie utworzono kopię zamóweinia, nowy numer zamówienia to: {jObject["order_id"].ToString()}");
+            }
+            else
+            {
+                Error("Błąd podczas tworzenia kopi zamówienia");
+            }
         }
 
         private void Log(string msg)

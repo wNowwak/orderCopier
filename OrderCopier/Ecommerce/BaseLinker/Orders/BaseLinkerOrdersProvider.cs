@@ -12,17 +12,22 @@ namespace OrderCopier.Ecommerce.BaseLinker.Orders
     {
         private ILogger _logger;
         private IEcommerceConnector _connector;
-
-        public BaseLinkerOrdersProvider( ILogger logger, IEcommerceConnector connector)
+        private StandardUserConfig _standardUserConfig;
+        public BaseLinkerOrdersProvider( ILogger logger, IEcommerceConnector connector, StandardUserConfig standardUserConfig)
         {
             _logger = logger;
             _connector = connector;
+            _standardUserConfig = standardUserConfig;
         }
-        public IEnumerable<IOrder> GetOrders()
+        public IEnumerable<IOrder> GetOrders( )
         {
             IEnumerable<IOrder> orderList = new List<IOrder>();
             IOrder order = new BaseLinkerOrder();
-            var response = (JObject)_connector.GetResponse("2000587-2002861-A6LLBOP61EN6T7XD7W852FAGZMNGUA862YIOZLSJA2ZNZ3TCNFNW3IT5JBOYNL4Q", "getOrders", "{\"order_id\":23280582}");
+            var data = new Dictionary<string, string>();
+            data["token"] = _standardUserConfig.fromBL;
+            data["method"] = "getOrders";
+            data["parameters"] = "{\"order_id\":"+_standardUserConfig.orderId+"}";
+            var response = (JObject)_connector.GetResponse(data);
             orderList = order.setUpOrder(response);
             return orderList;
         }

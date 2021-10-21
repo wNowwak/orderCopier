@@ -11,5 +11,6 @@ namespace OrderCopier.Interfaces
         void Info(string msg);
         void Debug(string msg);
         void Error(string msg);
+        void VerifyResponse(string msg);
     }
 }

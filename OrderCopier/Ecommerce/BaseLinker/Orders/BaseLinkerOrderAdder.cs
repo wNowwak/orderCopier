@@ -11,19 +11,27 @@ namespace OrderCopier.Ecommerce.BaseLinker.Orders
     {
         IEcommerceConnector _connector;
         ILogger _logger;
-        public BaseLinkerOrderAdder(IEcommerceConnector connector, ILogger logger)
+        StandardUserConfig _standardUserConfig;
+        public BaseLinkerOrderAdder(IEcommerceConnector connector, ILogger logger, StandardUserConfig standardUserConfig)
         {
             _connector = connector;
             _logger = logger;
+            _standardUserConfig = standardUserConfig;
         }
-        public void AddOrder(IOrder order, string status_id, string dateAdd)
+        public string AddOrder(IOrder order)
         {
-            string json = prepareJson(order);
+            string json = prepareJson(order, _standardUserConfig.destinationStatus, _standardUserConfig.dateAdd);
+            var data = new Dictionary<string, string>();
+            data["token"] = _standardUserConfig.toBL;
+            data["method"] = "addOrder";
+            data["parameters"] = json;
+            var res =  _connector.GetResponse(data).ToString();
+            _logger.VerifyResponse(res);
 
-           var res =  _connector.GetResponse("2000587-2002861-A6LLBOP61EN6T7XD7W852FAGZMNGUA862YIOZLSJA2ZNZ3TCNFNW3IT5JBOYNL4Q", "addOrder", json);
+            return res;
         }
 
-        private string prepareJson(IOrder order)
+        private string prepareJson(IOrder order, string status_id, string dateAdd)
         {
             string result = "{";
             
@@ -31,12 +39,24 @@ namespace OrderCopier.Ecommerce.BaseLinker.Orders
             {
                 if (item.GetValue(order)!= null)
                 {
-                    result += $"\"{item.Name}\":\"{item.GetValue(order)}\",";
+                    switch (item.Name)
+                    {
+                        case "order_status_id":
+                            result += $"\"{item.Name}\":\"{status_id}\",";
+                            break;
+                        case "date_add":
+                            result += $"\"{item.Name}\":\"{dateAdd}\",";
+                            break;
+                        default:
+                            result += $"\"{item.Name}\":\"{item.GetValue(order)}\",";
+                            break;
+                    }
+                    
                 }
             }
             result = result.Remove(result.LastIndexOf(','));
             result += "}";
-            result = result.Replace("False", "1");
+            
             return result;
         }
     }

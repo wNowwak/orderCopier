@@ -18,7 +18,7 @@ namespace OrderCopier
         {
             ILogger logger = new ConsoleLogger();
             
-            var dateAdd = (int)Math.Floor(DateTime.Now.Subtract(new DateTime(1970, 1, 1)).TotalSeconds);
+            
             string config;
 
             using (StreamReader sr = new StreamReader("config.xml"))
@@ -31,7 +31,8 @@ namespace OrderCopier
             string toBL = data.ElementAt(1).Value.ToString();
             string orderId = data.ElementAt(2).Value.ToString();
             string destinationStatus = data.ElementAt(3).Value.ToString();
-            StandardUserConfig standardUserConfig = new StandardUserConfig(fromBL, toBL, orderId, destinationStatus, dateAdd.ToString());
+            string dataType = data.ElementAt(4).Value.ToString();
+            StandardUserConfig standardUserConfig = new StandardUserConfig(fromBL, toBL, orderId, destinationStatus,dataType);
 
 
             

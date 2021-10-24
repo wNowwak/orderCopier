@@ -12,14 +12,34 @@ namespace OrderCopier
        public string toBL;
        public string orderId;
        public string destinationStatus;
+        private string _dataType;
         public string dateAdd;
-        public StandardUserConfig(string from, string to, string Id, string Status, string date)
+        public StandardUserConfig(string from, string to, string Id, string Status, string dataTyp)
         {
             fromBL = from;
             toBL = to;
             orderId = Id;
             destinationStatus = Status;
-            dateAdd = date;
+            _dataType = dataTyp;
         }
+
+        public string processDate(string datatime)
+        {
+            string data = string.Empty;
+            switch (_dataType)
+            {
+                case "original":
+                    data = datatime;
+                    break;
+                default:
+                    var dateAdd = (int)Math.Floor(DateTime.Now.Subtract(new DateTime(1970, 1, 1)).TotalSeconds);
+                    data = dateAdd.ToString();
+                    break;
+                 
+            }
+            return data;
+        }
+
+        
     }
 }

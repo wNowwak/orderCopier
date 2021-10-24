@@ -145,7 +145,7 @@ namespace OrderCopier.Ecommerce.BaseLinker.Orders
                     listOfProducts.Add(orderProduct);
                 }
 
-
+                orderObj.products = listOfProducts;
                 orderList.Add(orderObj);
             }
 

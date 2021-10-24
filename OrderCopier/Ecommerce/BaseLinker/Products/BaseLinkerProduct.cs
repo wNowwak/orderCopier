@@ -16,7 +16,6 @@ namespace OrderCopier.Ecommerce.BaseLinker.Products
         public string name { get ; set ; }
         public string sku { get ; set ; }
         public string ean { get ; set ; }
-        public string attributes { get ; set ; }
         public decimal price_brutto { get ; set ; }
         public decimal tax_rate { get ; set ; }
         public int quantity { get ; set ; }

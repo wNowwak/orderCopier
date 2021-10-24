@@ -15,7 +15,6 @@ namespace OrderCopier.Interfaces
         string name { get; set; }
         string sku { get; set; }
         string ean { get; set; }
-        string attributes { get; set; }
         decimal price_brutto { get; set; }
         decimal tax_rate { get; set; }
         int quantity { get; set; }

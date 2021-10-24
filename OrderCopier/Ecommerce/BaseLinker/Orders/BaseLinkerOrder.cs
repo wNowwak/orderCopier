@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using OrderCopier.Ecommerce.BaseLinker.Products;
 using OrderCopier.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,7 @@ namespace OrderCopier.Ecommerce.BaseLinker.Orders
                 IOrder orderObj = new BaseLinkerOrder();
                 foreach (JProperty orderField in order)
                 {
+                    
                     var property = orderObj.GetType().GetProperties().Where(x => x.Name.Equals(orderField.Name)).FirstOrDefault();
                     if (property != null)
                     {
@@ -95,8 +97,55 @@ namespace OrderCopier.Ecommerce.BaseLinker.Orders
                         }
                         property.SetValue(orderObj, propertyValue);
                     }
-
+                    
                 }
+                
+
+                var products = order["products"];
+                List<IProduct> listOfProducts = new List<IProduct>();
+                foreach (var product in products)
+                {
+                    IProduct orderProduct = new BaseLinkerProduct();
+                    foreach (JProperty item in product)
+                    {
+                        var property = orderProduct.GetType().GetProperties().Where(x => x.Name.Equals(item.Name)).FirstOrDefault();
+                        if (property != null)
+                        {
+                            object propertyValue;
+                            string orderFieldValue = item.Value.ToString();
+                            switch (property.PropertyType.Name.ToLower())
+                            {
+                                case "string":
+                                    propertyValue = orderFieldValue;
+                                    break;
+                                case "int32":
+                                    if (int.TryParse(orderFieldValue, out int tempPropertyValueInt))
+                                        propertyValue = tempPropertyValueInt;
+                                    else
+                                        continue;
+                                    break;
+                                case "decimal":
+                                    if (Decimal.TryParse(orderFieldValue, out decimal tempPropertyValueDec))
+                                        propertyValue = tempPropertyValueDec;
+                                    else
+                                        continue;
+                                    break;
+                                case "boolean":
+                                    propertyValue = orderFieldValue.Equals("1") ? true : false;
+                                    break;
+                                default:
+                                    Console.WriteLine("I don't know such type");
+                                    propertyValue = null;
+                                    break;
+                            }
+                            property.SetValue(orderProduct, propertyValue);
+                        }
+
+                    }
+                    listOfProducts.Add(orderProduct);
+                }
+
+
                 orderList.Add(orderObj);
             }
 
@@ -105,5 +154,7 @@ namespace OrderCopier.Ecommerce.BaseLinker.Orders
 
             return orderList;
         }
+
+       
     }
 }

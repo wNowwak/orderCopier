@@ -31,7 +31,7 @@ namespace OrderCopier
             string toBL = data.ElementAt(1).Value.ToString();
             string orderId = data.ElementAt(2).Value.ToString();
             string destinationStatus = data.ElementAt(3).Value.ToString();
-            StandardUserConfig standardUserConfig = new StandardUserConfig(fromBL, toBL, orderId, destinationStatus);
+            StandardUserConfig standardUserConfig = new StandardUserConfig(fromBL, toBL, orderId, destinationStatus, dateAdd.ToString());
 
 
             

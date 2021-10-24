@@ -51,6 +51,7 @@
     <Compile Include="Ecommerce\BaseLinker\Orders\BaseLinkerOrder.cs" />
     <Compile Include="Ecommerce\BaseLinker\Orders\BaseLinkerOrderAdder.cs" />
     <Compile Include="Ecommerce\BaseLinker\Orders\BaseLinkerOrdersProvider.cs" />
+    <Compile Include="Ecommerce\BaseLinker\Products\BaseLinkerProduct.cs" />
     <Compile Include="Interfaces\IDeliveryAddress.cs" />
     <Compile Include="Interfaces\IEcommerceConnector.cs" />
     <Compile Include="Interfaces\IInvoiceAddress.cs" />

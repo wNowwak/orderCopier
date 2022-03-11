@@ -18,3 +18,13 @@ C:\Users\Wojtek\source\repos\orderCopier\OrderCopier\obj\Debug\OrderCopier.cspro
 C:\Users\Wojtek\source\repos\orderCopier\OrderCopier\obj\Debug\OrderCopier.csproj.CopyComplete
 C:\Users\Wojtek\source\repos\orderCopier\OrderCopier\obj\Debug\OrderCopier.exe
 C:\Users\Wojtek\source\repos\orderCopier\OrderCopier\obj\Debug\OrderCopier.pdb
+C:\OrderCopier\orderCopier\OrderCopier\bin\Debug\OrderCopier.exe.config
+C:\OrderCopier\orderCopier\OrderCopier\bin\Debug\OrderCopier.exe
+C:\OrderCopier\orderCopier\OrderCopier\bin\Debug\OrderCopier.pdb
+C:\OrderCopier\orderCopier\OrderCopier\bin\Debug\Newtonsoft.Json.dll
+C:\OrderCopier\orderCopier\OrderCopier\bin\Debug\Newtonsoft.Json.xml
+C:\OrderCopier\orderCopier\OrderCopier\obj\Debug\OrderCopier.csproj.AssemblyReference.cache
+C:\OrderCopier\orderCopier\OrderCopier\obj\Debug\OrderCopier.csproj.CoreCompileInputs.cache
+C:\OrderCopier\orderCopier\OrderCopier\obj\Debug\OrderCopier.csproj.CopyComplete
+C:\OrderCopier\orderCopier\OrderCopier\obj\Debug\OrderCopier.exe
+C:\OrderCopier\orderCopier\OrderCopier\obj\Debug\OrderCopier.pdb

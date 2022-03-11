@@ -2,6 +2,9 @@
 
 Program służy do kopiowania konkretnego zamówienia pomiedzy platformą ecommerce BaseLinker. Aby skorzystać z programu nalezy skonfigurować plik config.xml.
 W pliku config.xml znajdują się nastepujące pola:
+
+
+
 #1 <fromBL> w tym kluczu umieszcza się token konta BaseLinker, z którego chcemy skopiować zamówienie.
 #2 <toBL>  w tym kluczu umieszcza się token konta BaseLinker, do którego chcemy skopiować zamówienie.
 #3 <orderID> klucz, którego wartość określa jakie zamówienie zostanie skopiowane do docelowego BaseLinker.

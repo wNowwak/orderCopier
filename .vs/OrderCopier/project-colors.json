@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "b75375c7-5984-44b8-bf5e-c6f8d225afaf": {
+      "ProjectGuid": "b75375c7-5984-44b8-bf5e-c6f8d225afaf",
+      "DisplayName": "OrderCopier",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

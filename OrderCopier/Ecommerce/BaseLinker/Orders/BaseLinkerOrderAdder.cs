@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace OrderCopier.Ecommerce.BaseLinker.Orders
 {
@@ -25,7 +26,9 @@ namespace OrderCopier.Ecommerce.BaseLinker.Orders
             var data = new Dictionary<string, string>();
             data["token"] = _standardUserConfig.toBL;
             data["method"] = "addOrder";
-            data["parameters"] = json;
+            
+            data["parameters"] = json.Replace("\"Marta\"", "");
+
             var res =  _connector.GetResponse(data).ToString();
             _logger.VerifyResponse(res);
 

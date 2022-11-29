@@ -28,3 +28,4 @@ C:\OrderCopier\orderCopier\OrderCopier\obj\Debug\OrderCopier.csproj.CoreCompileI
 C:\OrderCopier\orderCopier\OrderCopier\obj\Debug\OrderCopier.csproj.CopyComplete
 C:\OrderCopier\orderCopier\OrderCopier\obj\Debug\OrderCopier.exe
 C:\OrderCopier\orderCopier\OrderCopier\obj\Debug\OrderCopier.pdb
+C:\OrderCopier\orderCopier\OrderCopier\obj\Debug\OrderCopier.csproj.SuggestedBindingRedirects.cache
